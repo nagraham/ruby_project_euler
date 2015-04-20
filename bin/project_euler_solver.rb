@@ -28,20 +28,20 @@ Commands:
                             argument the number for the Project Euler qestion
                             to describe.
 
-  'q' / 'quit'            : Quit the program.
+  'q' / 'quit' / 'exit'   : Quit the program.
 
 INTRO
 
 def solve(num)
-  solution = self.class.const_get("Solution#{num}")
-  puts solution.class
-  solution.new.solve
+  get_solution(num).solve
 end
 
 def describe(num)
-  solution = self.class.const_get("Solution#{num}")
-  puts solution.class
-  solution.new.describe
+  get_solution(num).describe
+end
+
+def get_solution(num)
+  self.class.const_get("Solution#{num}").new
 end
 
 def run_interface
@@ -58,7 +58,7 @@ def run_interface
         puts solve(arguments.first)
       when 'd', 'describe'
         puts describe(arguments.first)
-      when 'q', 'quit'
+      when 'q', 'quit', 'exit'
         break
       else
         puts 'Command not recognized. Please retry . . . '
