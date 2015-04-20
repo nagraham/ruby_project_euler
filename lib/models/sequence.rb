@@ -30,8 +30,9 @@ class Sequence
   DEFAULT_ALGORITHM = lambda { |sequence| sequence.empty? ? 0 : sequence.last + 1 }
 
   # Params:
-  #  n = The number of elements of the sequence to create
-  #  starting_values = The first elements of the sequence
+  #  n : The number of elements of the sequence to create
+  #  starting_values : The first elements of the sequence
+  #  algorithm : A proc or code block which can calculate the next element in the sequence.
   def initialize(n = 0, starting_values = [], &algorithm)
     @sequence = []
     @starting_values = starting_values
@@ -59,7 +60,7 @@ class Sequence
     return new_elements
   end
 
-  # Calculates the sequence up to, but not including, the given number
+  # Calculates elements of the sequence up to--but not including--the given value.
   def upto(number)
     set_next while peek < number
     return self
@@ -69,5 +70,5 @@ class Sequence
   def to_a
     @sequence.clone
   end
-  
+
 end
